@@ -1,0 +1,101 @@
+table Medidas
+	lineageTag: 84e37030-3c1b-4d76-8145-734cd8c7af6f
+
+	measure 'Total Ventas' = ```
+			SUM('Fact_Ventas'[Precio Venta sin IGV])
+			
+			```
+		lineageTag: cc67a2eb-2ce9-4e13-ab18-c2f4eed52257
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Cantidad_Ventas_Modelo = ```
+			COUNTROWS('Fact_Ventas')
+			
+			```
+		formatString: 0
+		lineageTag: 3dbfc677-340c-4787-beb1-cb762604c233
+
+	measure Ventas_por_Modelo = ```
+			COUNT('Hoja1'[Modelo])
+			
+			```
+		formatString: 0
+		lineageTag: 316acb2a-b04d-424c-85a2-605e51a97df6
+
+	measure Ventas_por_Version = ```
+			SUM('Hoja1'[Precio_Venta_sin_IGV])
+			
+			```
+		lineageTag: 510ed864-ac28-4f8f-88df-7f58c0dee783
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Precio_Promedio_por_Tipo_Canal = ```
+			AVERAGE('Hoja1'[Precio_Venta_sin_IGV])
+			
+			```
+		lineageTag: eb2091a4-b45d-4f0d-8525-fc609fd4ec57
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ingresos por Vendedor' = ```
+			SUM('Fact_Ventas'[Precio Venta sin IGV])
+			
+			```
+		lineageTag: 2b7af000-c939-4f3c-b8af-6b2062fbe822
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Ingresos' = ```
+			SUM('Fact_Ventas'[Precio Venta sin IGV])
+			
+			```
+		lineageTag: caf883f4-e1f3-4745-a58d-436f24f8e4fd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Vehículos Vendidos' = ```
+			COUNTROWS('Fact_Ventas')
+			
+			```
+		formatString: 0
+		lineageTag: 9e672889-b417-4e35-9141-baddfa2a81b7
+
+	measure 'Precio Promedio Venta' = ```
+			AVERAGE('Fact_Ventas'[Precio Venta sin IGV])
+			
+			```
+		lineageTag: e15be6eb-a64c-47d9-8153-48e0823dae58
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Canales Activos' = ```
+			DISTINCTCOUNT('Fact_Ventas'[Canal])
+			
+			```
+		formatString: 0
+		lineageTag: a8ef9a28-ff5e-4724-96e8-3e7b82323a40
+
+	column Column
+		formatString: 0
+		lineageTag: a7961652-8808-4330-89b1-f18e09562736
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = f418d3172a2a4360860ad742eb94f496
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":"{}"}
+
+	annotation 277cc1b9-af89-4597-8e15-cacc25c0886b = ```
+			An Evaluate statement cannot return a table without columns.
+			
+			```
+
